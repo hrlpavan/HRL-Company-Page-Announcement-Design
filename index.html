@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HRL Company Page Announcement Design System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+      --bg: #f8f9fa;
+      --card-bg: #ffffff;
+      --text: #1d1d1f;
+      --text-sub: #515154;
+      --text-muted: #86868b;
+      --border: rgba(0, 0, 0, 0.08);
+      --border-sub: rgba(0, 0, 0, 0.06);
+      --accent: #5c9100;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      padding: 48px 16px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1040px;
+      margin: 0 auto;
+    }
+
+    .header {
+      margin-bottom: 36px;
+      text-align: center;
+    }
+
+    .header-badge {
+      display: inline-block;
+      background: #e5e5ea;
+      color: #1d1d1f;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 9999px;
+      margin-bottom: 12px;
+    }
+
+    .header h1 {
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    .header p {
+      font-size: 15px;
+      color: var(--text-sub);
+      margin-top: 8px;
+    }
+
+    /* THE BENTO CARD */
+    .announcement-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 40px 36px;
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.04), 0 2px 10px rgba(0, 0, 0, 0.02);
+      text-align: left;
+    }
+
+    .meta-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1px solid var(--border-sub);
+      padding-bottom: 18px;
+      margin-bottom: 28px;
+    }
+
+    .badge-pill {
+      background: var(--accent);
+      color: #ffffff;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 4px 10px;
+      border-radius: 9999px;
+    }
+
+    .meta-subtitle {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .meta-code {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+    }
+
+    .grid-layout {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 36px;
+      align-items: stretch;
+    }
+
+    .tactile-tile {
+      background: linear-gradient(165deg, #ffffff 0%, #f5f5f7 100%);
+      border: 1px solid var(--border);
+      border-left: 5px solid var(--accent);
+      border-radius: 20px;
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 360px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.04), 0 2px 8px rgba(0, 0, 0, 0.02);
+    }
+
+    .watermark {
+      position: absolute;
+      right: -15px;
+      bottom: -15px;
+      font-size: 80px;
+      font-weight: 900;
+      color: rgba(118, 185, 0, 0.05);
+      pointer-events: none;
+      user-select: none;
+      line-height: 1;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(118, 185, 0, 0.10);
+      border: 1px solid rgba(118, 185, 0, 0.25);
+      padding: 4px 10px;
+      border-radius: 9999px;
+      margin-bottom: 16px;
+    }
+
+    .status-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .status-text {
+      font-size: 10.5px;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .product-title {
+      font-size: clamp(24px, 4vw, 30px);
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.025em;
+      line-height: 1.15;
+    }
+
+    .product-subtitle {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-top: 6px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .product-desc {
+      font-size: 13.5px;
+      color: var(--text-sub);
+      margin-top: 12px;
+      line-height: 1.55;
+    }
+
+    .author-box {
+      margin-top: 28px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border-sub);
+    }
+
+    .author-name {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--text);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .author-title {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 3px;
+      font-weight: 500;
+    }
+
+    .right-pane {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .category-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 6px;
+    }
+
+    .headline {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.015em;
+      margin-bottom: 12px;
+    }
+
+    .body-desc {
+      font-size: 13.5px;
+      color: var(--text-sub);
+      line-height: 1.55;
+      margin-bottom: 18px;
+    }
+
+    .chips-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .chip {
+      background: #f5f5f7;
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .chip-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .cta-cluster {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #ffffff;
+      padding: 11px 22px;
+      border-radius: 9999px;
+      font-size: 13.5px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 14px rgba(92, 145, 0, 0.28);
+      transition: transform 0.15s ease;
+    }
+
+    .btn-secondary {
+      background: #ffffff;
+      border: 1px solid rgba(92, 145, 0, 0.3);
+      color: var(--accent);
+      padding: 11px 18px;
+      border-radius: 9999px;
+      font-size: 13.5px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-tertiary {
+      background: #f5f5f7;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 11px 18px;
+      border-radius: 9999px;
+      font-size: 13.5px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-primary:hover, .btn-secondary:hover, .btn-tertiary:hover {
+      transform: translateY(-1px);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <div class="header">
+      <span class="header-badge">HRL Design System</span>
+      <h1>Bento Split-Hero Announcement Card</h1>
+      <p>Precision Apple Pro × Linear corporate showcase card for company updates and releases.</p>
+    </div>
+
+    <!-- The Component -->
+    <div class="announcement-card">
+      
+      <!-- Top Metadata Bar -->
+      <div class="meta-bar">
+        <div style="display: inline-flex; align-items: center; gap: 8px;">
+          <span class="badge-pill">NVIDIA Accelerated Platform</span>
+          <span class="meta-subtitle">GeForce RTX & DGX Workstations · On-Device Local AI Runtime</span>
+        </div>
+        <div class="meta-code">
+          HRL-NV-RTX-2026 • Verified On-Device GPU Architecture
+        </div>
+      </div>
+
+      <!-- 2-Column Bento Grid Layout -->
+      <div class="grid-layout">
+        
+        <!-- Left: Tactile Platform Tile -->
+        <div class="tactile-tile">
+          <div class="watermark">RTX</div>
+          <div>
+            <div class="status-badge">
+              <span class="status-dot"></span>
+              <span class="status-text">NVIDIA RTX & DGX Initiative</span>
+            </div>
+            <h3 class="product-title">RTX-LocalAI</h3>
+            <div class="product-subtitle">High-Performance Inference & Paged Memory Engine</div>
+            <p class="product-desc">
+              Engineered for client-side RTX PCs and DGX workstations to deliver sub-millisecond LLM streaming, zero-leak data privacy, and eliminate VRAM fragmentation via Paged KV-Cache and CUDA Graphs.
+            </p>
+          </div>
+
+          <div class="author-box">
+            <div class="author-name">Pavan Kumar Sadashiv (HRL)</div>
+            <div class="author-title">AI Chief Architect & Founder, HRL International Private Limited</div>
+          </div>
+        </div>
+
+        <!-- Right: Specs Matrix & Actions -->
+        <div class="right-pane">
+          <div>
+            <div class="category-eyebrow">High-Throughput Client-Side AI Architecture</div>
+            <h3 class="headline">On-Device LLM Inference & Zero-Fragmentation Paged Memory</h3>
+            <p class="body-desc">
+              RTX-LocalAI unifies 0.17µs Paged KV-Cache block allocation, sub-5µs CUDA Graph replay execution, FP8 Ada Lovelace hardware precision, and a 4-token speculative decoding verification loop for 1,538+ tokens/sec sustained local throughput.
+            </p>
+
+            <!-- 2x2 Highlights Grid -->
+            <div class="chips-grid">
+              <div class="chip">
+                <span class="chip-dot"></span>
+                <span>Zero-Fragmentation Paged KV-Cache</span>
+              </div>
+              <div class="chip">
+                <span class="chip-dot"></span>
+                <span>CUDA Graph Sub-5µs Replay Engine</span>
+              </div>
+              <div class="chip">
+                <span class="chip-dot"></span>
+                <span>0.65ms/tok INT4-AWQ + Speculative</span>
+              </div>
+              <div class="chip">
+                <span class="chip-dot"></span>
+                <span>ElevenLabs Voice AI Narration Hub</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- CTAs -->
+          <div class="cta-cluster">
+            <a href="https://hrlpavan.github.io/nvedia-project-by-hrl/" target="_blank" class="btn-primary">
+              Launch LocalAI GPU Platform ↗
+            </a>
+            <a href="https://hrlpavan.github.io/hrl-international-website-/nvidia-rtx-localai.html" target="_blank" class="btn-secondary">
+              Read Dedicated Overview Page →
+            </a>
+            <a href="https://github.com/hrlpavan/nvedia-project-by-hrl" target="_blank" class="btn-tertiary">
+              View GitHub Repository ↗
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
+</html>
